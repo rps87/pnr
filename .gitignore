@@ -1,0 +1,9 @@
+classes/class-PasswordHash.php
+controllers/user-register-controller.php
+models/exemplo/exemplo-model.php
+models/user-register/user-register-model.php
+views/_css/style.css
+views/_js/html5.js
+views/_js/scripts.js
+views/exemplo/exemplo-view.php
+views/user-register/user-register-view.php

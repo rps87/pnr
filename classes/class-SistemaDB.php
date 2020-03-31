@@ -5,7 +5,7 @@
  * @package PNR
  * @since 0.1
  */
-class TutsupDB
+class SistemaDB
 {
 	/** DB properties */
 	public $host      = 'localhost', // Host da base de dados 
@@ -16,7 +16,9 @@ class TutsupDB
 	       $pdo       = null,        // Nossa conexão com o BD
 	       $error     = null,        // Configura o erro
 	       $debug     = false,       // Mostra todos os erros 
-	       $last_id   = null;        // Último ID inserido
+		   $last_id   = null,        // Último ID inserido
+		   
+		   $port	  = 5432;
 	
 	/**
 	 * Construtor da classe
@@ -64,9 +66,9 @@ class TutsupDB
 	final protected function connect() {
 	
 		/* Os detalhes da nossa conexão PDO */
-		$pdo_details  = "mysql:host={$this->host};";
+		$pdo_details  = "pgsql:host={$this->host};";
+		$pdo_details .= "port={$this->port};";
 		$pdo_details .= "dbname={$this->db_name};";
-		$pdo_details .= "charset={$this->charset};";
 		 
 		// Tenta conectar
 		try {

@@ -1,5 +1,13 @@
 <?php
 class ExemploController extends MainController
 {
-   // Aqui vem nossas ações
+   // URL: dominio.com/exemplo/
+	public function index() {
+	
+		// Carrega o modelo
+		$modelo = $this->load_model('exemplo/exemplo-model');
+		
+		// Carrega o view
+		require_once ABSPATH . '/views/exemplo/exemplo-view.php';
+	}
 }
