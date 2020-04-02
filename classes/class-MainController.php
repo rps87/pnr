@@ -52,7 +52,7 @@ class MainController extends UserLogin
 	 *
 	 * @access public
 	 */
-	public $permission_required = 'any';
+	public $permission_required = 1;
 
 	/**
 	 * $parametros

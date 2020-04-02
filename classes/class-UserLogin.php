@@ -108,7 +108,7 @@ class UserLogin
 		extract( $userdata );
 		
 		// Verifica se existe um usuário e senha
-		if ( ! isset( $user ) || ! isset( $user_password ) ) {
+		if ( ! isset( $usuario ) || ! isset( $usuario_password ) ) {
 			$this->logged_in = false;
 			$this->login_error = null;
 		
@@ -121,7 +121,7 @@ class UserLogin
 		// Verifica se o usuário existe na base de dados
 		$query = $this->db->query( 
 			'SELECT * FROM usuario WHERE usuario = ? LIMIT 1', 
-			array( $user ) 
+			array( $usuario ) 
 		);
 		
 		// Verifica a consulta
@@ -139,10 +139,10 @@ class UserLogin
 		$fetch = $query->fetch(PDO::FETCH_ASSOC);
 		
 		// Obtém o ID do usuário
-		$user_id = (int) $fetch['usuario_id'];
+		$usuario_id = (int) $fetch['usuario_id'];
 		
 		// Verifica se o ID existe
-		if ( empty( $user_id ) ){
+		if ( empty( $usuario_id ) ){
 			$this->logged_in = false;
 			$this->login_error = 'Usuario nao existe.';
 		
@@ -153,7 +153,7 @@ class UserLogin
 		}
 		
 		// Confere se a senha enviada pelo usuário bate com o hash do BD
-		if ( $this->phpass->CheckPassword( $user_password, $fetch['usuario_password'] ) ) {
+		if ( $this->phpass->CheckPassword( $usuario_password, $fetch['usuario_password'] ) ) {
 			
 			// Se for uma sessão, verifica se a sessão bate com a sessão do BD
 			if ( session_id() != $fetch['usuario_id_sessao'] && ! $post ) { 
@@ -176,7 +176,7 @@ class UserLogin
 				$_SESSION['userdata'] = $fetch;
 				
 				// Atualiza a senha
-				$_SESSION['userdata']['usuario_password'] = $user_password;
+				$_SESSION['userdata']['usuario_password'] = $usuario_password;
 				
 				// Atualiza o ID da sessão
 				$_SESSION['userdata']['usuario_id_sessao'] = $session_id;
@@ -184,12 +184,13 @@ class UserLogin
 				// Atualiza o ID da sessão na base de dados
 				$query = $this->db->query(
 					'UPDATE usuario SET usuario_id_sessao = ? WHERE usuario_id = ?',
-					array( $session_id, $user_id )
+					array( $session_id, $usuario_id )
 				);
 			}
 				
 			// Obtém um array com as permissões de usuário
-			$_SESSION['userdata']['user_permissions'] = unserialize( $fetch['usuario_permissoes'] );
+			//$_SESSION['userdata']['user_permissions'] = unserialize( $fetch['usuario_permissoes'] );
+			$_SESSION['userdata']['usuario_permissoes'] = $fetch['usuario_permissoes'];
 
 			// Configura a propriedade dizendo que o usuário está logado
 			$this->logged_in = true;
@@ -299,15 +300,17 @@ class UserLogin
 	 * @final
 	 */
 	final protected function check_permissions( 
-		$required = 'any', 
-		$user_permissions = array('any')
+		$required = 1, 
+		$user_permissions = array('1')
 	) {
-		if ( ! is_array( $user_permissions ) ) {
+		//if ( ! is_array( $user_permissions ) ) {
+		if ( ! ($user_permissions == 1) ) {
 			return;
 		}
 
 		// Se o usuário não tiver permissão
-		if ( ! in_array( $required, $user_permissions ) ) {
+		//if ( ! in_array( $required, $user_permissions ) ) {
+		if ( ! ( $required == $user_permissions ) ) {
 			// Retorna falso
 			return false;
 		} else {

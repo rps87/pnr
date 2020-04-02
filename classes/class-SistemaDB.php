@@ -86,9 +86,11 @@ class SistemaDB
 			// Não precisamos mais dessas propriedades
 			unset( $this->host     );
 			unset( $this->db_name  );
+			unset( $this->port     );
 			unset( $this->password );
 			unset( $this->user     );
 			unset( $this->charset  );
+
 		
 		} catch (PDOException $e) {
 			
