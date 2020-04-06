@@ -317,4 +317,13 @@ class UserLogin
 			return true;
 		}
 	}
+
+	public function sair(){
+		
+		$this->logout();
+
+		// Redireciona para a página
+		echo '<meta http-equiv="Refresh" content="0; url='.HOME_URI.'">';
+		echo '<script type="text/javascript">window.location.href = "'.HOME_URI.'";</script>';
+	}
 }

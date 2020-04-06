@@ -10,6 +10,6 @@
 		<li><a href="<?php echo HOME_URI;?>/noticias/">XXX</a></li>
 		<li><a href="<?php echo HOME_URI;?>/noticias/adm/">XXX Admin</a></li>
 		<li><a href="<?php echo HOME_URI;?>/exemplo/">Exemplo básico</a></li>
-		<li><a href="<?php echo HOME_URI;?>/exemplo/">Logout</a></li>
+		<li><a href="<?php echo HOME_URI;?>/logout/">Logout</a></li>
 	</ul>
 </nav>
