@@ -3,6 +3,7 @@
 <div class="wrap">
 
 	<form method="post">
+		<!-- Entra uma MSG aqui depois de logado, como?? -->
 		<table class="form-table">
 			<tr>
 				<td>Usuario</td> 

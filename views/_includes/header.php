@@ -22,6 +22,9 @@
 	<script src="<?php echo HOME_URI;?>/views/_js/scripts.js"></script>
 	<![endif]-->
 
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js" async=""></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 	<title><?php echo $this->title; ?></title>
 </head>
 <body>
